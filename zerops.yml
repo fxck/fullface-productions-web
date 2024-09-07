@@ -1,5 +1,5 @@
 zerops:
-  - setup: gui
+  - setup: app
     build:
       base: nodejs@20
       envVariables:
@@ -8,10 +8,6 @@ zerops:
         - pnpm i
         - pnpm build
       deployFiles:
-        - dist
+        - dist/analog/public~
     run:
-      base: nodejs@20
-      ports:
-        - port: 3000
-          httpSupport: true
-      start: node dist/analog/server/index.mjs
+      base: static

@@ -14,8 +14,12 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     analog({
-      nitro: {
-        preset: 'node-server',
+      ssr: true,
+      static: true,
+      prerender: {
+        routes: async () => [
+          '/',
+        ],
       },
     }),
     angular({

@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       '@analogjs/content':
-        specifier: ^1.7.3-beta.1
+        specifier: ^1.7.3
         version: 1.7.3(@angular/common@18.2.3(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.3(@angular/animations@18.2.3(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.3(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/router@18.2.3(@angular/common@18.2.3(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.3(@angular/animations@18.2.3(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.3(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.3(rxjs@7.8.1)(zone.js@0.14.10)))(rxjs@7.8.1))(@nx/devkit@19.6.5(nx@19.6.5))(front-matter@4.0.2)(prismjs@1.29.0)(rxjs@7.8.1)
       '@analogjs/router':
-        specifier: ^1.7.3-beta.1
+        specifier: ^1.7.3
         version: 1.7.3(ozmr5iehxqjtr5zlp2f4kdllvu)
       '@angular/animations':
         specifier: ^18.0.0
@@ -8025,7 +8025,7 @@ snapshots:
       '@babel/plugin-syntax-top-level-await': 7.14.5(@babel/core@7.25.2)
       '@babel/plugin-syntax-unicode-sets-regex': 7.18.6(@babel/core@7.25.2)
       '@babel/plugin-transform-arrow-functions': 7.24.7(@babel/core@7.25.2)
-      '@babel/plugin-transform-async-generator-functions': 7.25.0(@babel/core@7.25.2)
+      '@babel/plugin-transform-async-generator-functions': 7.25.4(@babel/core@7.25.2)
       '@babel/plugin-transform-async-to-generator': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-block-scoped-functions': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-block-scoping': 7.25.0(@babel/core@7.25.2)
@@ -10736,12 +10736,12 @@ snapshots:
 
   css-loader@7.1.2(webpack@5.94.0(esbuild@0.23.0)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.41)
-      postcss: 8.4.41
-      postcss-modules-extract-imports: 3.1.0(postcss@8.4.41)
-      postcss-modules-local-by-default: 4.0.5(postcss@8.4.41)
-      postcss-modules-scope: 3.2.0(postcss@8.4.41)
-      postcss-modules-values: 4.0.0(postcss@8.4.41)
+      icss-utils: 5.1.0(postcss@8.4.45)
+      postcss: 8.4.45
+      postcss-modules-extract-imports: 3.1.0(postcss@8.4.45)
+      postcss-modules-local-by-default: 4.0.5(postcss@8.4.45)
+      postcss-modules-scope: 3.2.0(postcss@8.4.45)
+      postcss-modules-values: 4.0.0(postcss@8.4.45)
       postcss-value-parser: 4.2.0
       semver: 7.6.3
     optionalDependencies:
@@ -11817,10 +11817,6 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.4.41):
-    dependencies:
-      postcss: 8.4.41
-
   icss-utils@5.1.0(postcss@8.4.45):
     dependencies:
       postcss: 8.4.45
@@ -12187,7 +12183,7 @@ snapshots:
     dependencies:
       copy-anything: 2.0.6
       parse-node-version: 1.0.1
-      tslib: 2.6.3
+      tslib: 2.7.0
     optionalDependencies:
       errno: 0.1.8
       graceful-fs: 4.2.11
@@ -13228,20 +13224,9 @@ snapshots:
       postcss: 8.4.45
       postcss-selector-parser: 6.1.2
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.4.41):
-    dependencies:
-      postcss: 8.4.41
-
   postcss-modules-extract-imports@3.1.0(postcss@8.4.45):
     dependencies:
       postcss: 8.4.45
-
-  postcss-modules-local-by-default@4.0.5(postcss@8.4.41):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.4.41)
-      postcss: 8.4.41
-      postcss-selector-parser: 6.1.2
-      postcss-value-parser: 4.2.0
 
   postcss-modules-local-by-default@4.0.5(postcss@8.4.45):
     dependencies:
@@ -13250,20 +13235,10 @@ snapshots:
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.0(postcss@8.4.41):
-    dependencies:
-      postcss: 8.4.41
-      postcss-selector-parser: 6.1.2
-
   postcss-modules-scope@3.2.0(postcss@8.4.45):
     dependencies:
       postcss: 8.4.45
       postcss-selector-parser: 6.1.2
-
-  postcss-modules-values@4.0.0(postcss@8.4.41):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.4.41)
-      postcss: 8.4.41
 
   postcss-modules-values@4.0.0(postcss@8.4.45):
     dependencies:
@@ -13528,7 +13503,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.4.41
+      postcss: 8.4.45
       source-map: 0.6.1
 
   resolve@1.22.8:
