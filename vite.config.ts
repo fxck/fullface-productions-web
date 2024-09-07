@@ -2,6 +2,7 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import angular from '@analogjs/vite-plugin-angular';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -18,6 +19,9 @@ export default defineConfig(({ mode }) => ({
       prerender: {
         routes: [],
       },
+    }),
+    angular({
+      inlineStylesExtension: 'scss',
     }),
   ],
 }));
