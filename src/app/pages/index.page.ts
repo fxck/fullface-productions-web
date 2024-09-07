@@ -55,8 +55,8 @@ export default class HomeComponent {
     },
     {
       name: 'Lipno',
-      videoUrl: '',
-      videoId: '',
+      videoUrl: 'https://youtu.be/NuEdQ9fn8QM',
+      videoId: 'NuEdQ9fn8QM',
       separator: true
     },
     {

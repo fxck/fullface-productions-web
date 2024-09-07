@@ -1,0 +1,17 @@
+zerops:
+  - setup: gui
+    build:
+      base: nodejs@20
+      envVariables:
+        NODE_OPTIONS: --max_old_space_size=4096
+      buildCommands:
+        - pnpm i
+        - pnpm build
+      deployFiles:
+        - dist
+    run:
+      base: nodejs@20
+      ports:
+        - port: 3000
+          httpSupport: true
+      start: node dist/analog/server/index.mjs
