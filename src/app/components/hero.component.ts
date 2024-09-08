@@ -262,4 +262,8 @@ export class HeroComponent {
   activeItem = signal<string | undefined>(undefined);
   aboutClick = output();
   activeVideo = signal<string | undefined>(undefined);
+
+  constructor() {
+    console.log('ąsd');
+  }
 }

@@ -1,7 +1,7 @@
 zerops:
   - setup: app
     build:
-      base: nodejs@20
+      base: nodejs@22
       envVariables:
         NODE_OPTIONS: --max_old_space_size=4096
       buildCommands:
@@ -11,3 +11,30 @@ zerops:
         - dist/analog/public~
     run:
       base: static
+
+  - setup: test
+    extends: app
+
+  - setup: scraper
+    build:
+      base: nodejs@22
+      envVariables:
+        MODE: scraper
+        NODE_OPTIONS: --max_old_space_size=4096
+      buildCommands:
+        - pnpm i
+        - rm -rf src/app/pages
+        - pnpm build
+      deployFiles:
+        - dist
+        - package.json
+    run:
+      base: nodejs@22
+      envVariables:
+        MY_SERVER_USER_ID: ${RAPIDKEY_USER_ID}
+        MY_SERVER_RAPIDAPI_KEY: ${RAPIDAPI_KEY}
+        MY_SERVER_S3_ENDPOINT: ${storage_apiUrl}
+        MY_SERVER_S3_ACCESS_KEY: ${storage_accessKeyId}
+        MY_SERVER_S3_SECRET_KEY: ${storage_secretAccessKey}
+        MY_SERVER_S3_BUCKET_NAME: ${storage_bucketName}
+      start: pnpm prod

@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
+// import { toSignal } from '@angular/core/rxjs-interop';
 import { AppBarComponent } from '../components/app-bar.component';
 import { HeroComponent } from '../components/hero.component';
 import { AboutComponent } from '../components/about.component';
+// import { injectLoad } from '@analogjs/router';
+// import { load } from './index.server';
+import { JsonPipe } from '@angular/common';
+// import { InstagramPost } from '../../models/instagram.model';
 
 @Component({
   selector: 'ff-home',
@@ -10,7 +15,8 @@ import { AboutComponent } from '../components/about.component';
   imports: [
     AppBarComponent,
     HeroComponent,
-    AboutComponent
+    AboutComponent,
+    JsonPipe
   ],
   template: `
     <ff-app-bar />
@@ -23,7 +29,18 @@ import { AboutComponent } from '../components/about.component';
     </div>
 
     <div class="__about" #aboutRef>
+
       <ff-about />
+
+      <div class="__instagram-grid">
+        @for (item of data(); track $index) {
+          <!-- <div
+            [style.backgroundImage]="'url(' + item.thumbnail_url + ')'"
+            class=__instagram-post>
+          </div> -->
+        }
+      </div>
+
     </div>
   `,
   styles: `
@@ -36,6 +53,24 @@ import { AboutComponent } from '../components/about.component';
 
       height: 100vh;
       min-height: var(--hero-min-height);
+    }
+
+    .__instagram-grid {
+      max-width: 1000px;
+      padding: var(--bu);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--bu);
+    }
+
+    .__instagram-post {
+      width: 100%;
+
+      aspect-ratio: 1/1;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
     }
   `
 })
@@ -102,7 +137,10 @@ export default class HomeComponent {
 
   aboutRef = viewChild<ElementRef<HTMLElement>>('aboutRef');
 
+  data = signal([]); // toSignal<InstagramPost[]>(injectLoad<typeof load>(), { requireSync: true });
+
   scrollToAbout() {
     this.aboutRef()?.nativeElement?.scrollIntoView({ behavior: 'smooth' });
   }
+
 }
