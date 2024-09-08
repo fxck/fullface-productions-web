@@ -39,9 +39,9 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "@analogjs/platform": "^1.7.3-beta.1",
-    "@analogjs/vite-plugin-angular": "^1.7.3-beta.1",
-    "@analogjs/vitest-angular": "^1.7.3-beta.1",
+    "@analogjs/platform": "^1.7.3",
+    "@analogjs/vite-plugin-angular": "^1.7.3",
+    "@analogjs/vitest-angular": "^1.7.3",
     "@angular/cli": "^18.0.0",
     "@angular/compiler-cli": "^18.0.0",
     "typescript": "~5.4.2",

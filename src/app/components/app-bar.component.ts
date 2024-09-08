@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
       position: absolute;
       top: var(--bu);
-      left: var(--bu);
+      left: 0;
       z-index: 10;
 
       width: 100%;
