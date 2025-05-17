@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, PLATFORM_ID, inject, signal, viewChild } from '@angular/core';
 import { AppBarComponent } from '../components/app-bar.component';
 import { HeroComponent } from '../components/hero.component';
 import { AboutComponent } from '../components/about.component';
@@ -6,7 +6,7 @@ import { injectLoad } from '@analogjs/router';
 import { load } from './index.server';
 import { InstagramPost } from '../../models/instagram.model';
 import { HttpClient } from '@angular/common/http';
-import { NgClass, DecimalPipe } from '@angular/common';
+import { NgClass, DecimalPipe, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'ff-home',
@@ -244,6 +244,9 @@ export default class HomeComponent implements OnInit {
 
   aboutRef = viewChild<ElementRef<HTMLElement>>('aboutRef');
 
+  // Get platform ID to check if we're running in the browser
+  private platformId = inject(PLATFORM_ID);
+  
   // Initial data from SSR (will be empty with our implementation)
   private loadData = injectLoad<typeof load>();
   initialData = signal<InstagramPost[]>([]);
@@ -258,26 +261,29 @@ export default class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Set any initial data if available (though it will be empty with our implementation)
-    if (this.loadData && Array.isArray(this.loadData)) {
-      this.posts.set(this.loadData);
+    // Set initial empty data
+    this.posts.set([]);
+    
+    // Only fetch Instagram data in the browser, not during SSR or build
+    if (isPlatformBrowser(this.platformId)) {
+      // Fetch from API only in browser context
+      const apiUrl = import.meta.env['MY_SERVER_SCRAPER_ENDPOINT'] 
+        ? `${import.meta.env['MY_SERVER_SCRAPER_ENDPOINT']}/api/instagram` 
+        : '/api/instagram';
+
+      this.http.get<InstagramPost[]>(apiUrl).subscribe({
+        next: (data) => {
+          this.posts.set(data);
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.error('Failed to load Instagram posts:', err);
+          this.isLoading.set(false);
+        }
+      });
+    } else {
+      // During build/SSR, just set loading to false
       this.isLoading.set(false);
-      return;
     }
-
-    // Fetch from API - use default endpoint for local development
-    const apiUrl = '/api/instagram';
-
-    this.http.get<InstagramPost[]>(apiUrl).subscribe({
-      next: (data) => {
-        this.posts.set(data);
-        this.isLoading.set(false);
-      },
-      error: (err) => {
-        console.error('Failed to load Instagram posts:', err);
-        this.isLoading.set(false);
-      }
-    });
   }
-
 }

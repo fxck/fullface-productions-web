@@ -9,7 +9,10 @@
       "Bash(git commit:*)",
       "Bash(pnpm view:*)",
       "Bash(pnpm update:*)",
-      "Bash(pnpm remove:*)"
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm run:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm build:*)"
     ],
     "deny": []
   }

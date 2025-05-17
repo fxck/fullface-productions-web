@@ -30,6 +30,7 @@ zerops:
         - pnpm build
       deployFiles:
         - dist
+        - node_modules
         - package.json
     run:
       base: nodejs@22
