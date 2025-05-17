@@ -4,7 +4,6 @@ zerops:
       base: nodejs@22
       envVariables:
         NODE_OPTIONS: --max_old_space_size=4096
-        # Empty value to avoid build errors
         MY_SERVER_SCRAPER_ENDPOINT: ""
       buildCommands:
         - pnpm i
@@ -13,6 +12,8 @@ zerops:
         - dist/analog/public~
     run:
       base: static
+      envVariables:
+        MY_SERVER_SCRAPER_ENDPOINT: ${scraper_zeropsSubdomain}
 
   - setup: test
     extends: app
@@ -40,3 +41,6 @@ zerops:
         MY_SERVER_S3_SECRET_KEY: ${storage_secretAccessKey}
         MY_SERVER_S3_BUCKET_NAME: ${storage_bucketName}
       start: pnpm prod
+      ports:
+        - port: 3000
+          httpSupport: true
