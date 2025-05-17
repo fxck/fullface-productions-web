@@ -73,10 +73,16 @@ Zerops is used for deployment with two main services:
 
 ## CORS Configuration
 
-The Instagram API endpoint (`/api/instagram`) has CORS completely disabled, allowing access from any domain without restrictions.
+The Instagram API endpoint (`/api/instagram`) is configured with multiple layers of CORS handling to ensure cross-origin requests work in all environments:
 
-The CORS configuration can be found in `src/server/routes/instagram.ts` and uses the following settings:
-- Origin: '*' (allows any domain)
-- Methods: '*' (allows any HTTP method)
-- Headers: '*' (allows any headers)
-- Max Age: 86400 (24 hours)
+1. **Route Handler CORS Headers**: Direct header manipulation in `src/server/routes/instagram.ts`
+2. **CORS Middleware**: Global CORS middleware in `src/server/middleware/cors.ts`
+3. **Nitro Route Rules**: CORS configuration in `vite.config.ts` for both scraper and normal modes
+
+All configurations use permissive settings:
+- Access-Control-Allow-Origin: '*'
+- Access-Control-Allow-Methods: 'GET, POST, OPTIONS'
+- Access-Control-Allow-Headers: '*'
+- Access-Control-Max-Age: '86400'
+
+If you're still experiencing CORS issues, check if any proxy or CDN in front of the application might be stripping CORS headers.

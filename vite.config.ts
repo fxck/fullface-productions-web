@@ -31,7 +31,14 @@ export default defineConfig(({ mode }) => {
           nitro: {
             // Focus only on API routes, block everything else
             routeRules: {
-              '/api/instagram': {},
+              '/api/instagram': {
+                cors: true,
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                  'Access-Control-Allow-Headers': '*'
+                }
+              },
               '/api/**': {},
               '/**': { handler: 'none' }
             }
@@ -70,7 +77,15 @@ export default defineConfig(({ mode }) => {
         // Skip Instagram API route in client mode
         nitro: {
           routeRules: {
-            '/api/instagram': { handler: 'none' }
+            '/api/instagram': { 
+              handler: 'none',
+              cors: true,
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': '*'
+              }
+            }
           },
         }
       }),

@@ -31,16 +31,16 @@ let cachedPosts: InstagramPost[] | null = null;
 let lastCacheTime: number = 0;
 
 export default eventHandler(async (event) => {
-  // Allow any origin - completely disable CORS restrictions
-  setHeaders(event, {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': '*',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Max-Age': '86400',
-  });
-
+  // Set CORS headers explicitly for each response
+  event.node.res.setHeader('Access-Control-Allow-Origin', '*');
+  event.node.res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  event.node.res.setHeader('Access-Control-Allow-Headers', '*');
+  event.node.res.setHeader('Access-Control-Max-Age', '86400');
+  
   // Handle OPTIONS request for CORS preflight
   if (event.method === 'OPTIONS') {
+    event.node.res.statusCode = 204;
+    event.node.res.end();
     return null;
   }
 
