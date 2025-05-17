@@ -12,7 +12,8 @@
       "Bash(pnpm remove:*)",
       "Bash(pnpm run:*)",
       "Bash(ls:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(MODE=scraper pnpm build)"
     ],
     "deny": []
   }

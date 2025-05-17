@@ -9,6 +9,40 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const isScraper = env['MODE'] === 'scraper';
 
+  // For scraper mode, create a special configuration that only builds server parts
+  if (isScraper) {
+    return {
+      build: {
+        target: ['es2020'],
+        // Don't generate client-side code for scraper mode
+        client: false,
+      },
+      resolve: {
+        mainFields: ['module']
+      },
+      plugins: [
+        analog({
+          ssr: true,
+          // Don't generate static files for scraper
+          static: false,
+          // Don't run prerendering
+          prerender: false,
+          // Configure server routes
+          nitro: {
+            // Focus only on API routes, block everything else
+            routeRules: {
+              '/api/instagram': {},
+              '/api/**': {},
+              '/**': { handler: 'none' }
+            }
+          }
+        }),
+        angular()
+      ]
+    };
+  }
+
+  // For normal mode (not scraper)
   return {
     build: {
       target: ['es2020']
@@ -27,20 +61,16 @@ export default defineConfig(({ mode }) => {
     plugins: [
       analog({
         ssr: mode === 'development' ? false : true,
-        // Only use static for client mode, not scraper mode
-        static: !isScraper,
+        static: true,
         prerender: {
           routes: async () => [
             '/'
           ]
         },
-        // Configure server routes for different modes
+        // Skip Instagram API route in client mode
         nitro: {
-          // Skip the Instagram API route during client build
           routeRules: {
-            '/api/instagram': isScraper 
-              ? {} // Allow in scraper mode
-              : { handler: 'none' } // Skip in client mode
+            '/api/instagram': { handler: 'none' }
           },
         }
       }),
