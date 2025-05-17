@@ -26,7 +26,7 @@ zerops:
         NODE_OPTIONS: --max_old_space_size=4096
       buildCommands:
         - pnpm i
-        - pnpm build:scraper
+        - pnpm build
       deployFiles:
         - dist/analog/server
         - node_modules
