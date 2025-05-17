@@ -32,12 +32,8 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          // Configure Sass with modern API
-          sassOptions: {
-            outputStyle: 'compressed'
-          },
-          // Force the use of the embedded Sass compiler
-          implementation: 'sass-embedded'
+          // Use modern API to avoid deprecation warnings
+          api: "modern"
         }
       }
     },
