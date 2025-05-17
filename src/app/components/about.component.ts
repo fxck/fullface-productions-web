@@ -3,7 +3,6 @@ import { PersonComponent } from './person.component';
 
 @Component({
   selector: 'ff-about',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PersonComponent

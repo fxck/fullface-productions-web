@@ -3,7 +3,6 @@ import { VideoModalComponent } from './video-modal.component';
 
 @Component({
   selector: 'ff-hero',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     VideoModalComponent

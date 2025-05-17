@@ -6,17 +6,17 @@ import { injectLoad } from '@analogjs/router';
 import { load } from './index.server';
 import { InstagramPost } from '../../models/instagram.model';
 import { HttpClient } from '@angular/common/http';
-import { NgClass } from '@angular/common';
+import { NgClass, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'ff-home',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AppBarComponent,
     HeroComponent,
     AboutComponent,
-    NgClass
+    NgClass,
+    DecimalPipe
   ],
   template: `
     <ff-app-bar />
@@ -39,11 +39,20 @@ import { NgClass } from '@angular/common';
           }
         } @else {
           @for (item of posts(); track item.id) {
-            <div
+            <a
+              [href]="'https://www.instagram.com/p/' + item.code + '/'"
+              target="_blank"
+              rel="noopener noreferrer"
               [style.backgroundImage]="'url(' + item.thumbnail_url + ')'"
               class="__instagram-post"
               [ngClass]="{'__loaded': true}">
-            </div>
+              <div class="__instagram-overlay">
+                <div class="__instagram-likes">
+                  <span class="__instagram-likes-icon">♥</span>
+                  <span class="__instagram-likes-count">{{ item.like_count | number }}</span>
+                </div>
+              </div>
+            </a>
           }
         }
       </div>
@@ -72,38 +81,84 @@ import { NgClass } from '@angular/common';
     }
 
     .__instagram-post {
+      display: block;
       width: 100%;
       aspect-ratio: 1/1;
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
       transition: opacity 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      border-radius: 4px;
+      
+      &:hover {
+        .__instagram-overlay {
+          opacity: 1;
+        }
+      }
+    }
+    
+    .__instagram-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .__instagram-likes {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .__instagram-likes-icon {
+      margin-right: 6px;
+      color: #ff4d67;
+    }
+    
+    .__instagram-likes-count {
+      color: white;
     }
 
     .__ghost {
-      background-color: rgba(200, 200, 200, 0.2);
+      background-color: #191919;
       position: relative;
       overflow: hidden;
+      border-radius: 4px;
     }
 
-    .__ghost::after {
+    .__ghost::before {
       content: '';
-      display: block;
       position: absolute;
-      left: -150px;
       top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      width: 150px;
-      background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-      animation: shimmer 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.03) 0%, 
+        rgba(255, 255, 255, 0.06) 50%, 
+        rgba(255, 255, 255, 0.03) 100%);
+      background-size: 200% 100%;
+      animation: pulse 2s ease-in-out infinite;
     }
 
-    @keyframes shimmer {
+    @keyframes pulse {
       0% {
-        transform: translateX(0);
+        background-position: 100% 0;
       }
       100% {
-        transform: translateX(calc(100% + 150px));
+        background-position: -100% 0;
       }
     }
 

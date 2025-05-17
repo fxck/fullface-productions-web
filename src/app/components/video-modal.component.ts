@@ -11,7 +11,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'ff-video-modal',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fadeInOut', [

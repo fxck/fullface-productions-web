@@ -1,9 +1,7 @@
 import { Component, input } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'ff-person',
-  standalone: true,
   template: `
     <div
       class="__bg"
