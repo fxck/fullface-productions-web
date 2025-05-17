@@ -72,6 +72,16 @@ import { animate, style, transition, trigger } from '@angular/animations';
       aspect-ratio: 16 / 9;
       overflow: hidden;
       border-radius: 5px;
+      
+      @media (max-width: 768px) {
+        width: 90vw;
+        height: calc(90vw * (9 / 16));
+      }
+      
+      @media (max-width: 480px) {
+        width: 95vw;
+        height: calc(95vw * (9 / 16));
+      }
     }
 
     .__close-button {
@@ -88,6 +98,13 @@ import { animate, style, transition, trigger } from '@angular/animations';
       font-weight: 700;
       line-height: 30px;
       text-align: center;
+      
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        line-height: 40px;
+      }
     }
   `
 })

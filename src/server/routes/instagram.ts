@@ -25,7 +25,7 @@ interface InstagramApiResponse {
 }
 
 const TOTAL_SIZE = 20;
-const CACHE_DURATION = 10 * 60 * 1000;
+const CACHE_DURATION = 6 * 60 * 60 * 1000;
 
 let cachedPosts: InstagramPost[] | null = null;
 let lastCacheTime: number = 0;

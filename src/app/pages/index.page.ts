@@ -78,6 +78,14 @@ import { NgClass, DecimalPipe } from '@angular/common';
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: var(--bu);
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+      }
     }
 
     .__instagram-post {
@@ -95,6 +103,12 @@ import { NgClass, DecimalPipe } from '@angular/common';
       border-radius: 4px;
       
       &:hover {
+        .__instagram-overlay {
+          opacity: 1;
+        }
+      }
+      
+      @media (max-width: 480px) {
         .__instagram-overlay {
           opacity: 1;
         }

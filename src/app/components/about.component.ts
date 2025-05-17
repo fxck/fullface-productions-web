@@ -53,20 +53,38 @@ import { PersonComponent } from './person.component';
     .__title {
       font-size: 32px;
       line-height: 1.75em;
+      
+      @media (max-width: 768px) {
+        font-size: 24px;
+        line-height: 1.5em;
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 20px;
+      }
     }
 
     .__desc {
       font-size: 20px;
       line-height: 2em;
-
       opacity: 0.8;
+      
+      @media (max-width: 768px) {
+        font-size: 16px;
+        line-height: 1.75em;
+      }
     }
 
     .__team {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: var(--bu);
-      padding-top: calc(var(--but) * 3);
+      padding-top: calc(var(--bu) * 3);
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        row-gap: calc(var(--bu) * 3);
+      }
     }
   `
 })
