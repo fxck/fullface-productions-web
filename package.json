@@ -51,6 +51,8 @@
     "@analogjs/vitest-angular": "^1.16.1",
     "@angular/cli": "^19.2.12",
     "@angular/compiler-cli": "^19.2.11",
+    "sass": "^1.89.0",
+    "sass-embedded": "^1.89.0",
     "typescript": "~5.8.3",
     "vite": "^5.0.0"
   },

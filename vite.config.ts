@@ -29,6 +29,14 @@ export default defineConfig(({ mode }) => {
     resolve: {
       mainFields: ['module']
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // Configure Sass with modern API
+          outputStyle: 'compressed'
+        }
+      }
+    },
     plugins: [
       analog({
         ssr: mode === 'development' ? false : true,

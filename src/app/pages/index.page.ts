@@ -176,8 +176,9 @@ export default class HomeComponent implements OnInit {
 
   aboutRef = viewChild<ElementRef<HTMLElement>>('aboutRef');
 
-  // Initial data from SSR (could be empty)
-  initialData = toSignal<InstagramPost[]>(injectLoad<typeof load>(), { initialValue: [] });
+  // Initial data from SSR (will be empty with our implementation)
+  private loadData = injectLoad<typeof load>();
+  initialData = signal<InstagramPost[]>([]);
   
   // Client-side state
   http = inject(HttpClient);
@@ -189,15 +190,15 @@ export default class HomeComponent implements OnInit {
   }
   
   ngOnInit() {
-    // Use initial data if available (though it will be empty in this implementation)
-    if (this.initialData().length > 0) {
-      this.posts.set(this.initialData());
+    // Set any initial data if available (though it will be empty with our implementation)
+    if (this.loadData && Array.isArray(this.loadData)) {
+      this.posts.set(this.loadData);
       this.isLoading.set(false);
       return;
     }
     
-    // Fetch from API - use environment variable if available, otherwise default to local endpoint
-    const apiUrl = import.meta.env.MY_SERVER_SCRAPER_ENDPOINT || '/api/instagram';
+    // Fetch from API - use default endpoint for local development
+    const apiUrl = '/api/instagram';
     
     this.http.get<InstagramPost[]>(apiUrl).subscribe({
       next: (data) => {
