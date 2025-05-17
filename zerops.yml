@@ -4,7 +4,7 @@ zerops:
       base: nodejs@22
       envVariables:
         NODE_OPTIONS: --max_old_space_size=4096
-        MY_SERVER_SCRAPER_ENDPOINT: ""
+        MY_SERVER_SCRAPER_ENDPOINT: ${RUNTIME_MY_SERVER_SCRAPER_ENDPOINT}
       buildCommands:
         - pnpm i
         - pnpm build
