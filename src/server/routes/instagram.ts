@@ -1,4 +1,4 @@
-import { eventHandler } from 'h3';
+import { eventHandler, setHeaders } from 'h3';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { InstagramPost } from '../../models/instagram.model';
 
@@ -30,7 +30,20 @@ const CACHE_DURATION = 6 * 60 * 60 * 1000;
 let cachedPosts: InstagramPost[] | null = null;
 let lastCacheTime: number = 0;
 
-export default eventHandler(async () => {
+export default eventHandler(async (event) => {
+  // Set CORS headers
+  setHeaders(event, {
+    'Access-Control-Allow-Origin': 'https://fullfaceproductions.com',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400',
+  });
+
+  // Handle OPTIONS request for CORS preflight
+  if (event.method === 'OPTIONS') {
+    return null;
+  }
+
   return await getPosts({
     rapidApiKey: import.meta.env['MY_SERVER_RAPIDAPI_KEY'],
     userId: import.meta.env['MY_SERVER_USER_ID'],

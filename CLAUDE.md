@@ -70,3 +70,10 @@ Zerops is used for deployment with two main services:
 3. **Server Routes**: API endpoints in `src/server/routes`
 4. **SSR**: Server-side rendering with client-side hydration
 5. **Environment Variables**: Used for API keys and service configuration
+
+## CORS Configuration
+
+The Instagram API endpoint (`/api/instagram`) has CORS headers configured to allow requests from:
+- Origin: https://fullfaceproductions.com
+
+If additional domains need access, update the CORS headers in `src/server/routes/instagram.ts`.
