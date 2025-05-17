@@ -10,13 +10,12 @@ zerops:
         - pnpm build
       deployFiles:
         - dist/analog/public~
+      cache:
+        - node_modules
     run:
       base: static
       envVariables:
         MY_SERVER_SCRAPER_ENDPOINT: ${scraper_zeropsSubdomain}
-
-  - setup: test
-    extends: app
 
   - setup: scraper
     build:
@@ -31,6 +30,8 @@ zerops:
         - dist/analog/server
         - node_modules
         - package.json
+      cache:
+        - node_modules
     run:
       base: nodejs@22
       envVariables:
