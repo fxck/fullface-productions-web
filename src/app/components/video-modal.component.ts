@@ -22,22 +22,15 @@ import { animate, style, transition, trigger } from '@angular/animations';
       transition(':leave', [
         animate('300ms', style({ opacity: 0 }))
       ])
-    ]),
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateY(-50px)', opacity: 0 }),
-        animate('300ms', style({ transform: 'translateY(0)', opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('300ms', style({ transform: 'translateY(-50px)', opacity: 0 }))
-      ])
     ])
   ],
   template: `
     @if (open()) {
       <div class="__overlay" [@fadeInOut]>
-        <div class="__content" [@slideInOut]>
-          <button class="__close-button" (click)="close.emit()">x</button>
+        <div class="__content">
+
+        <button class="__close-button" (click)="close.emit()">&#10005;</button>
+
           <iframe
             class="__iframe"
             [src]="safeVideoUrl()"
@@ -45,6 +38,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
             allow="autoplay; encrypted-media"
             allowfullscreen
           ></iframe>
+
         </div>
       </div>
     }
@@ -87,7 +81,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
       right: -10px;
       background-color: #fff;
       border: none;
-      font-size: 24px;
+      font-size: 18px;
       cursor: pointer;
       border-radius: 50%;
       width: 30px;

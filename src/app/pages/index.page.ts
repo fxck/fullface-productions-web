@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
-// import { toSignal } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AppBarComponent } from '../components/app-bar.component';
 import { HeroComponent } from '../components/hero.component';
 import { AboutComponent } from '../components/about.component';
-// import { injectLoad } from '@analogjs/router';
-// import { load } from './index.server';
+import { injectLoad } from '@analogjs/router';
+import { load } from './index.server';
 import { JsonPipe } from '@angular/common';
-// import { InstagramPost } from '../../models/instagram.model';
+import { InstagramPost } from '../../models/instagram.model';
 
 @Component({
   selector: 'ff-home',
@@ -33,12 +33,12 @@ import { JsonPipe } from '@angular/common';
       <ff-about />
 
       <div class="__instagram-grid">
-        @for (item of data(); track $index) {
-          <!-- <div
+        <!-- @for (item of data(); track $index) {
+          <div
             [style.backgroundImage]="'url(' + item.thumbnail_url + ')'"
             class=__instagram-post>
-          </div> -->
-        }
+          </div>
+        } -->
       </div>
 
     </div>
@@ -137,7 +137,7 @@ export default class HomeComponent {
 
   aboutRef = viewChild<ElementRef<HTMLElement>>('aboutRef');
 
-  data = signal([]); // toSignal<InstagramPost[]>(injectLoad<typeof load>(), { requireSync: true });
+  data = toSignal<InstagramPost[]>(injectLoad<typeof load>(), { requireSync: true });
 
   scrollToAbout() {
     this.aboutRef()?.nativeElement?.scrollIntoView({ behavior: 'smooth' });

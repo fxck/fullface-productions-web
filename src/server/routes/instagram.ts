@@ -1,6 +1,5 @@
 import { eventHandler } from 'h3';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-import fetch from 'node-fetch';
 import { InstagramPost } from '../../models/instagram.model';
 
 interface InstagramApiPost {
@@ -45,7 +44,7 @@ export default eventHandler(async () => {
   });
 });
 
-async function getPosts(config: {
+export async function getPosts(config: {
   rapidApiKey: string;
   userId: string;
   s3: {
@@ -56,6 +55,7 @@ async function getPosts(config: {
     bucketName: string;
   };
 }) {
+
   // Check if cache is valid
   if (cachedPosts && (Date.now() - lastCacheTime < CACHE_DURATION)) {
     console.log('Returning cached posts');
