@@ -31,11 +31,11 @@ let cachedPosts: InstagramPost[] | null = null;
 let lastCacheTime: number = 0;
 
 export default eventHandler(async (event) => {
-  // Set CORS headers
+  // Allow any origin - completely disable CORS restrictions
   setHeaders(event, {
-    'Access-Control-Allow-Origin': 'https://fullfaceproductions.com',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Headers': '*',
     'Access-Control-Max-Age': '86400',
   });
 

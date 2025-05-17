@@ -73,7 +73,10 @@ Zerops is used for deployment with two main services:
 
 ## CORS Configuration
 
-The Instagram API endpoint (`/api/instagram`) has CORS headers configured to allow requests from:
-- Origin: https://fullfaceproductions.com
+The Instagram API endpoint (`/api/instagram`) has CORS completely disabled, allowing access from any domain without restrictions.
 
-If additional domains need access, update the CORS headers in `src/server/routes/instagram.ts`.
+The CORS configuration can be found in `src/server/routes/instagram.ts` and uses the following settings:
+- Origin: '*' (allows any domain)
+- Methods: '*' (allows any HTTP method)
+- Headers: '*' (allows any headers)
+- Max Age: 86400 (24 hours)
