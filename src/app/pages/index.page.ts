@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, inject, signal, viewChild } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { AppBarComponent } from '../components/app-bar.component';
 import { HeroComponent } from '../components/hero.component';
 import { AboutComponent } from '../components/about.component';
@@ -179,7 +178,7 @@ export default class HomeComponent implements OnInit {
   // Initial data from SSR (will be empty with our implementation)
   private loadData = injectLoad<typeof load>();
   initialData = signal<InstagramPost[]>([]);
-  
+
   // Client-side state
   http = inject(HttpClient);
   posts = signal<InstagramPost[]>([]);
@@ -188,7 +187,7 @@ export default class HomeComponent implements OnInit {
   scrollToAbout() {
     this.aboutRef()?.nativeElement?.scrollIntoView({ behavior: 'smooth' });
   }
-  
+
   ngOnInit() {
     // Set any initial data if available (though it will be empty with our implementation)
     if (this.loadData && Array.isArray(this.loadData)) {
@@ -196,10 +195,10 @@ export default class HomeComponent implements OnInit {
       this.isLoading.set(false);
       return;
     }
-    
+
     // Fetch from API - use default endpoint for local development
     const apiUrl = '/api/instagram';
-    
+
     this.http.get<InstagramPost[]>(apiUrl).subscribe({
       next: (data) => {
         this.posts.set(data);
