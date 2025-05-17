@@ -9,8 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   styles: `
     :host {
-      --logo-size: 150px;
-
       position: absolute;
       top: var(--bu);
       left: 0;

@@ -11,7 +11,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'ff-video-modal',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fadeInOut', [
@@ -22,22 +21,15 @@ import { animate, style, transition, trigger } from '@angular/animations';
       transition(':leave', [
         animate('300ms', style({ opacity: 0 }))
       ])
-    ]),
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateY(-50px)', opacity: 0 }),
-        animate('300ms', style({ transform: 'translateY(0)', opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('300ms', style({ transform: 'translateY(-50px)', opacity: 0 }))
-      ])
     ])
   ],
   template: `
     @if (open()) {
       <div class="__overlay" [@fadeInOut]>
-        <div class="__content" [@slideInOut]>
-          <button class="__close-button" (click)="close.emit()">x</button>
+        <div class="__content">
+
+        <button class="__close-button" (click)="close.emit()">&#10005;</button>
+
           <iframe
             class="__iframe"
             [src]="safeVideoUrl()"
@@ -45,6 +37,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
             allow="autoplay; encrypted-media"
             allowfullscreen
           ></iframe>
+
         </div>
       </div>
     }
@@ -79,6 +72,16 @@ import { animate, style, transition, trigger } from '@angular/animations';
       aspect-ratio: 16 / 9;
       overflow: hidden;
       border-radius: 5px;
+      
+      @media (max-width: 768px) {
+        width: 90vw;
+        height: calc(90vw * (9 / 16));
+      }
+      
+      @media (max-width: 480px) {
+        width: 95vw;
+        height: calc(95vw * (9 / 16));
+      }
     }
 
     .__close-button {
@@ -87,7 +90,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
       right: -10px;
       background-color: #fff;
       border: none;
-      font-size: 24px;
+      font-size: 18px;
       cursor: pointer;
       border-radius: 50%;
       width: 30px;
@@ -95,6 +98,13 @@ import { animate, style, transition, trigger } from '@angular/animations';
       font-weight: 700;
       line-height: 30px;
       text-align: center;
+      
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        line-height: 40px;
+      }
     }
   `
 })

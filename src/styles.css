@@ -4,6 +4,29 @@
 :root {
   --bu: 24px;
   --bg: #000;
+  --work-size: 55px;
+  --work-content-width: 880px;
+  --hero-min-height: 700px;
+  --logo-size: 150px;
+}
+
+/* Mobile-first responsive variables */
+@media (max-width: 768px) {
+  :root {
+    --bu: 16px;
+    --work-size: 32px;
+    --work-content-width: 100%;
+    --hero-min-height: 500px;
+    --logo-size: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --bu: 12px;
+    --work-size: 24px;
+    --logo-size: 80px;
+  }
 }
 
 body {
@@ -12,4 +35,5 @@ body {
   font-weight: 400;
   font-style: normal;
   background: var(--bg);
+  overflow-x: hidden;
 }

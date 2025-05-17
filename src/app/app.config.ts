@@ -12,7 +12,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideFileRouter(),
-
     provideHttpClient(
       withFetch(),
       withInterceptors([ requestContextInterceptor ])

@@ -1,9 +1,7 @@
 import { Component, input } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'ff-person',
-  standalone: true,
   template: `
     <div
       class="__bg"
@@ -42,6 +40,14 @@ import { animate, style, transition, trigger } from '@angular/animations';
           opacity: 1;
         }
       }
+      
+      @media (max-width: 768px) {
+        min-height: 380px;
+      }
+      
+      @media (max-width: 480px) {
+        min-height: 320px;
+      }
     }
 
     .__name {
@@ -68,6 +74,10 @@ import { animate, style, transition, trigger } from '@angular/animations';
           opacity: 0.5 !important;
         }
       }
+      
+      @media (max-width: 768px) {
+        opacity: 1;
+      }
     }
 
     .__bg,
@@ -82,7 +92,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
       display: block;
       width: 100%;
       height: 100%;
-      background-position: bottom center;
+      background-position: top center;
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -94,6 +104,10 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
       display: block;
       width: 100%;
+      
+      @media (max-width: 480px) {
+        padding-bottom: calc(var(--bu) / 2);
+      }
     }
 
     .__name,

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add:*)",
+      "Bash(npx nx report:*)",
+      "Bash(npx nx migrate:*)",
+      "Bash(ng update:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(pnpm view:*)",
+      "Bash(pnpm update:*)",
+      "Bash(pnpm remove:*)"
+    ],
+    "deny": []
+  }
+}
